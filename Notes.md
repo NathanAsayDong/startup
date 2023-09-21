@@ -8,3 +8,8 @@ Git Commands:
 -pull copys those changes to local repo  
 -also dont forget to add two spaces after a line to make a new line  
 
+AWS Account:
+ssh -i /Users/nathandong/Desktop/Personal/Classes/CS260/NateKey.pem ubuntu@204.236.205.194
+Elastic IP Address: 52.203.235.255
+http://52.203.235.255
+
