@@ -9,7 +9,7 @@ Git Commands:
     -also dont forget to add two spaces after a line to make a new line
 
 AWS Account:
-    -ssh -i /Users/nathandong/Desktop/Personal/Classes/CS260/NateKey.pem ubuntu@204.236.205.194
+    -ssh -i /Users/nathandong/Desktop/Personal/Classes/CS260/NateKey.pem ubuntu@52.203.235.255
     -Elastic IP Address: 52.203.235.255
     -http://52.203.235.255
 
@@ -21,4 +21,7 @@ Caddy:
 
 Https / TLS / Web Certificates:
     -https is http with encryption
+    -TLS is the encryption protocol
+    -web certificates are used to verify the identity of the server
+    -caddy uses "lets encrypt" to create and rotate web certificates (thats the web cert issuer)
     -
