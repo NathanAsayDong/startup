@@ -25,3 +25,6 @@ Https / TLS / Web Certificates:
     -web certificates are used to verify the identity of the server
     -caddy uses "lets encrypt" to create and rotate web certificates (thats the web cert issuer)
     -
+
+//submit link: https://simon.homework-minder.com/
+//add simon-html to cs260 repo not startup repo
