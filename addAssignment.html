@@ -16,23 +16,41 @@
         </ul>
     </nav>
 
+    <p>This form will input data into the database to store all assignements</p>
     <div class="temp-border-box" style="border: 2px solid black; width: 100%; height: 100%;">
 
         <form action="#" method="get">
             <label for="Class">Class</label>
             <input type="text" id="username" name="username" required placeholder="class">
     
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required placeholder="password">
+            <label for="projectType">Project Type</label>
+            <select id="projectType" name="projectType">
+                <option value="homework">Homework</option>
+                <option value="quiz">Quiz</option>
+                <option value="test">Test</option>
+                <option value="project">Project</option>
+                <option value="other">Other</option>
+            </select>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required placeholder="password">
+            <label for="difficulty">Difficulty Level</label>
+            <select type="difficulty" name="difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required placeholder="password">
+            <label for="priority">Priority</label>
+            <select type="priority" name="priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+
+            <label for="description">Description</label>
+            <input type="text" id="description" name="description" placeholder="description">
 
             <label for="dueDate">Due Date:</label>
-            <input type="password" id="dueDate" name="dueDate" required placeholder="due date">
+            <input type="date" id="dueDate" name="dueDate" required placeholder="due date">
     
             <button type="submit">Submit New Assignment</button>
         </form>
