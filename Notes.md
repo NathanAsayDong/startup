@@ -28,3 +28,7 @@ Https / TLS / Web Certificates:
 
 //submit link: https://simon.homework-minder.com/
 //add simon-html to cs260 repo not startup repo
+
+
+deploy code:
+./deployFiles.sh -k /Users/nathandong/Desktop/Personal/Classes/CS260/NateKey.pem -h homework-minder.com -s simon
