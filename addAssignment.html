@@ -5,27 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Assignment</title>
     <link rel="icon" href="./Assets/HomeworkMinder.io__1_-removebg-preview.webp" type="image/x-icon">
+    <link rel="stylesheet" href="./addAssignment.css">
 </head>
 <body>
-    <a href="home.html">HOMEWORK_MINDER.io</a>
     <nav>
-        <ul>
-            <li><a href="addAssignment.html">Add Assignment</a></li>
-            <li><a href="announcements.html">Announcements</a></li>
-            <li><a href="index.html">Sign Out</a></li>
-        </ul>
+        <h3 class="brand-title"><a href="home.html">HOMEWORK_MINDER.io</a></h3>
+        <h2 class="nav-button"><a href="addAssignment.html">Add Assignment</a></h2>
+        <h2 class="nav-button"><a href="announcements.html">Announcements</a></h2>
+        <h2 class="nav-button"><a href="index.html">Sign Out</a></h2>
     </nav>
-
+<section>
     <button>Add Class</button>
-    <form action="#" method="get">
-        <label for="class">Class</label>
-        <input type="text" id="class" name="class" required placeholder="class">
 
-        <button type="submit">Submit New Class</button>
-    </form>
+    <div class="add-class-form">
+        <form action="#" method="get">
+            <label for="class">Class</label>
+            <input type="text" id="class" name="class" required placeholder="class">
 
-    <p>This form will input data into the database to store all assignements</p>
-    <div class="temp-border-box" style="border: 2px solid black; width: 100%; height: 100%;">
+            <button type="submit"  class="submit-button">Submit New Class</button>
+        </form>
+    </div>
+
+    <p style="text-align: center;">This form will input data into the database to store all assignements</p>
+    <div class="add-assignment-form" style="border: 2px solid black; margin: 10px; padding: 10px;">
 
         <form action="#" method="get">
             <label for="Class">Class</label>
@@ -60,10 +62,11 @@
             <label for="dueDate">Due Date:</label>
             <input type="date" id="dueDate" name="dueDate" required placeholder="due date">
     
-            <button type="submit">Submit New Assignment</button>
+            <button type="submit" class="submit-button">Submit New Assignment</button>
         </form>
-
     </div>
+
+</section>
 
     <footer>
         Created by Nathan Dong

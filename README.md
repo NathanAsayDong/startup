@@ -10,9 +10,6 @@ URL TO Draw Up: https://www.canva.com/design/DAFu24Bo5XQ/li59gvJK14vco5jJQZrZ4Q/
 can look at the time while they are working on their homework. I will also use websockets to display messages from teachers on a seperate page of the website. This will allow teachers (in theory) to relay mass announcments to their students in case of last minute updates or changes to do dates. That way students dont have to jump to email, learning suite, or canvas to check those announcments.
 
 
-
-
-
 Startup HTML Checklist:
 - [x] All pages as indicated by writeup and demo graphic have been created in HTML
 - [x] Links between pages are created and functional. Even a temp link to the google auth page to view content
@@ -23,3 +20,8 @@ Startup HTML Checklist:
 - [x] Database usage is located on the calender and add assignement page (database will store all homework tasks as added by "add assignment" page
 - [x] Websocket placeholder are assigned on "announcemnts" page and also the "dashboard" page for a small timestamp
 - [x] All git commands are pushed and -m with details
+
+
+CSS Properties for Startup:
+- Font Title: Impact[sans-serif]
+- Font Body:  Courier New, Courier, monospace
