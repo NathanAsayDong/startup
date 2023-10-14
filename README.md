@@ -25,3 +25,13 @@ Startup HTML Checklist:
 CSS Properties for Startup:
 - Font Title: Impact[sans-serif]
 - Font Body:  Courier New, Courier, monospace
+
+
+STARTUP CSS CHECKLIST:
+- [ ] Header, footer, and main content body
+- [ ] Navigation elements
+- [ ] Responsive to window resizing
+- [ ] Application elements
+- [ ] Application text content
+- [ ] Application images
+- [ ] Multiple Git commits with meaningful comments.
