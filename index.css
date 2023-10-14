@@ -13,6 +13,7 @@ body {
 .brand-title{
     font: bebas neue;
     color: #ff914d;
+    font-size: 300%;
 }
 
 .container {
@@ -88,7 +89,6 @@ header {
     justify-content: center;
     height: 3%;
     color: black;
-    text-shadow: 2px 2px 4px #000000;
 }
 
 footer {

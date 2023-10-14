@@ -17,7 +17,7 @@ Startup HTML Checklist:
 - [x] 3rd party service call placeholders have been made on login page and calendar page
 - [x] All images have been added for the tab icon and also a temp calendar image as a placeholder
 - [x] Login created allong with placeholders for text boxes and a forgot password button
-- [x] Database usage is located on the calender and add assignement page (database will store all homework tasks as added by "add assignment" page
+- [x] Database usage is located on the calender and add assignement page (database will store all homework tasks as added by "add assignment" page)
 - [x] Websocket placeholder are assigned on "announcemnts" page and also the "dashboard" page for a small timestamp
 - [x] All git commands are pushed and -m with details
 
