@@ -28,10 +28,10 @@ CSS Properties for Startup:
 
 
 STARTUP CSS CHECKLIST:
-- [ ] Header, footer, and main content body
-- [ ] Navigation elements
-- [ ] Responsive to window resizing
-- [ ] Application elements
-- [ ] Application text content
-- [ ] Application images
-- [ ] Multiple Git commits with meaningful comments.
+- [x] Header, footer, and main content body
+- [x] Navigation elements
+- [x] Responsive to window resizing
+- [x] Application elements
+- [x] Application text content
+- [x] Application images
+- [x] Multiple Git commits with meaningful comments.
