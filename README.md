@@ -36,3 +36,13 @@ STARTUP CSS CHECKLIST:
 - [x] Application images
 - [x] Multiple Git commits with meaningful comments.
 
+
+STARTUP JS CHECKLIST:
+- [ ] JavaScript support for future login.
+- [ ] JavaScript support for future database data.
+- [ ] JavaScript support for future WebSocket.
+- [ ] JavaScript support for your application's interaction logic.
+- [ ] Multiple Git commits with meaningful comments.
+
+
+
