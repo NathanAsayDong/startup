@@ -35,3 +35,4 @@ STARTUP CSS CHECKLIST:
 - [x] Application text content
 - [x] Application images
 - [x] Multiple Git commits with meaningful comments.
+
