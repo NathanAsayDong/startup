@@ -1,10 +1,6 @@
 classes = [];
 assignements = [];
 
-function NateTestButton() {
-    console.log("NateTestButton")
-}
-
 function getClasses() {
     //  getter function to get all the classes from database
 }
@@ -15,6 +11,12 @@ function getAssignments() {
 
 const addAssignmentForm = document.querySelector('#addAssignement');
 const newClassForm = document.querySelector('#newClassForm');
+
+newClassForm.addEventListener('submit', (event) => {
+    const newClass = document.querySelector('#newClass').value;
+
+    // add logic to add the new class to the database here
+});
 
 
 addAssignmentForm.addEventListener('submit', (event) => {
