@@ -39,10 +39,15 @@ STARTUP CSS CHECKLIST:
 
 STARTUP JS CHECKLIST:
 - [x] JavaScript support for future login.
+    -login is set up to pull users from databse
 - [x] JavaScript support for future database data.
+    -multiple get functions in code to pull from database
 - [x] JavaScript support for future WebSocket.
-- [ ] JavaScript support for your application's interaction logic.
+    -calendar and assignements set up for websocket use
+- [x] JavaScript support for your application's interaction logic.
+    -all pages have some sort of javascript interaction
 - [x] Multiple Git commits with meaningful comments.
+    -done
 
 
 
