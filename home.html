@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./home.css">
 </head>
 <body>
+    <button onclick="NateTestButton()">Nate Test Button</button>
 
     <nav>
         <h3 class="brand-title"><a href="home.html">HOMEWORK_MINDER.io</a></h3>
@@ -29,11 +30,12 @@
             </div>
 
             <div class="drop-down">
-                <label for="dueDateFilter">Filter by Due Date:</label>
+                <label for="dueDateFilter">Filter by Difficulty</label>
                 <select id="dueDateFilter">
                     <option value="all">All Dates</option>
-                    <option value="today">Today</option>
-                    <option value="thisWeek">This Week</option>
+                    <option value="today">Easy</option>
+                    <option value="thisWeek">Medium</option>
+                    <option value="thisWeek">Hard</option>
                 </select>
             </div>
 
@@ -51,13 +53,8 @@
     <div class="main-section">
         <div class="tasks" style="border: 2px solid black;">
             <h1 style="background-color: #ff914d; text-align: center; margin-top: 0; margin-bottom: 0;">Tasks</h1>
-            <ul style="background-color: white; margin-top: 0;">
-                <li>**placeholder for task compenent</li>
-                <li>**placeholder for task compenent</li>
-                <li>**placeholder for task compenent</li>
-                <li>**placeholder for task compenent</li>
-                <li>**placeholder for task compenent</li>
-                <li>**placeholder for task compenent</li>
+            <ul style="background-color: white; margin-top: 0;" class="assignment-list">
+                <!-- Placeholder list items replaced with dynamic content -->
             </ul>
         </div>
 

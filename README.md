@@ -39,8 +39,8 @@ STARTUP CSS CHECKLIST:
 
 STARTUP JS CHECKLIST:
 - [x] JavaScript support for future login.
-- [ ] JavaScript support for future database data.
-- [ ] JavaScript support for future WebSocket.
+- [x] JavaScript support for future database data.
+- [x] JavaScript support for future WebSocket.
 - [ ] JavaScript support for your application's interaction logic.
 - [x] Multiple Git commits with meaningful comments.
 
