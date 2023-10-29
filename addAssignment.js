@@ -1,5 +1,20 @@
 classes = [];
 assignements = [];
+showNewClassForm = false;
+const newClassForm = document.querySelector('.add-class-form');
+const addAssignmentForm = document.querySelector('#addAssignement');
+newClassForm.style.display = showNewClassForm ? 'block' : 'none';
+
+
+function toggleNewClassForm() {
+    if (showNewClassForm) {
+        showNewClassForm = false;
+    } else {
+        showNewClassForm = true;
+    }
+
+    newClassForm.style.display = showNewClassForm ? 'block' : 'none';
+}
 
 function getClasses() {
     //  getter function to get all the classes from database
@@ -8,9 +23,6 @@ function getClasses() {
 function getAssignments() {
     //  getter function to get all the assignments from database
 }
-
-const addAssignmentForm = document.querySelector('#addAssignement');
-const newClassForm = document.querySelector('#newClassForm');
 
 newClassForm.addEventListener('submit', (event) => {
     const newClass = document.querySelector('#newClass').value;

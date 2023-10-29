@@ -17,8 +17,8 @@
 
     <section>
 
-    <button>Add Class</button>
-    <div class="add-class-form">
+    <button onclick="toggleNewClassForm()">Add Class</button>
+    <div class="add-class-form" data-show-if="showNewClassForm">
         <form action="#" method="get" id="newClassForm">
             <label for="class">Class</label>
             <input type="text" id="class" name="class" required placeholder="class">
@@ -26,7 +26,7 @@
             <button type="submit"  class="submit-button">Submit New Class</button>
         </form>
     </div>
-    
+
     <p style="text-align: center;">This form will input data into the database to store all assignements</p>
     <div class="add-assignment-form">
 
