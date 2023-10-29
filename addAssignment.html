@@ -15,11 +15,11 @@
         <h2 class="nav-button"><a href="index.html">Sign Out</a></h2>
     </nav>
 
-<section>
+    <section>
 
     <button>Add Class</button>
     <div class="add-class-form">
-        <form action="#" method="get">
+        <form action="#" method="get" id="newClassForm">
             <label for="class">Class</label>
             <input type="text" id="class" name="class" required placeholder="class">
 
@@ -27,10 +27,12 @@
         </form>
     </div>
 
+    <button onclick="NateTestButton()">Nate Test Button</button>
+
     <p style="text-align: center;">This form will input data into the database to store all assignements</p>
     <div class="add-assignment-form">
 
-        <form action="#" method="get">
+        <form action="#" method="get" id="addAssignement">
             <label for="Class">Class</label>
             <input type="text" id="username" name="username" required placeholder="class">
     
@@ -71,11 +73,11 @@
         Created by Nathan Dong
     </footer>
 
-</section>
+    </section>
 
 
 
 
-
+    <script src="./addAssignment.js"></script>
 </body>
 </html>

@@ -12,6 +12,10 @@ form.addEventListener('submit', (event) => {
 
     // logic to access login database and return true or false here
 
+
+    // if turn then redirect to home page
+    
+    window.location.href = "home.html";
 });
 
 function NateTestButton() {
