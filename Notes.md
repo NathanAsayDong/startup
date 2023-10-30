@@ -35,9 +35,6 @@ deploy code:
 
 Midterm Notes:
 Console Commands:
--
-
-DNS:
 - chmod : change file mode bits
 - pwd : show working directory
 - cd : change directoyr
@@ -52,6 +49,9 @@ DNS:
 - wget : download files from web
 - sudo : execute command with superuser privileges
 - ssh : secure shell for remote login
+
+DNS:
+
 
 DOM:
 - tree structure where each node corresponds to an object
@@ -68,7 +68,7 @@ HTML:
 - <!DOCTYPE html> is the document type declaration
 
 CSS:
-- # is id, .<name> is class
+- "#" is id, ".<name>" is class
 - padding : space between content and border
 - margin : space between border and neighboring contents
 - box model :inside out , content -> padding -> border -> margin
