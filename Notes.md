@@ -51,7 +51,10 @@ Console Commands:
 - ssh : secure shell for remote login
 
 DNS:
-
+- domain name system
+- domain is human readable, ip is computer readable
+- root (top), followed by top level domains and then second level domains
+- www = sub, example = second, .com = top (www.example.com)
 
 DOM:
 - tree structure where each node corresponds to an object
@@ -90,6 +93,14 @@ Iterate and log: for (let i = 0; i < array.length; i++) { console.log(array[i]);
 if (condition) { // code } else { // code }
 - Changing Text Color:
 document.getElementById('byu').style.color = 'green';
+
+Other:
+- ssh example : ssh username@hostmanem (ssh then the ip address or domain) --> ssh john@example.com (opens user john at domain example.com), you can also specify port by -p then port, additionaly you may need a key which is -i then path to key then domain and name
+- HTTPS does require a web certificate
+- A DNS record cannot directly point to another DNS record, it maps to a domain and ipv4 address
+- port 443 --> https, port 80 --> http, port 22 --> ssh
+- JSON : javascript object notation
+- adding js to file : use inline "<script> lines of code </script" or external "<script src = blank></script>"
 
 
 
