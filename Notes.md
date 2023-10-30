@@ -1,12 +1,12 @@
 #NATES CS 260 NOTES
 
 Git Commands:
-    -add stages
-    -commit holds and prepares to upload
-    -push uploads to online repo
-    -fetch checks for differences online
-    -pull copys those changes to local repo
-    -also dont forget to add two spaces after a line to make a new line
+- add stages
+- commit holds and prepares to upload
+- push uploads to online repo
+- fetch checks for differences online
+- pull copys those changes to local repo
+- also dont forget to add two spaces after a line to make a new line
 
 AWS Account:
 - ssh -i /Users/nathandong/Desktop/Personal/Classes/CS260/NateKey.pem ubuntu@52.203.235.255
@@ -35,9 +35,23 @@ deploy code:
 
 Midterm Notes:
 Console Commands:
+-
 
 DNS:
-    -
+- chmod : change file mode bits
+- pwd : show working directory
+- cd : change directoyr
+- ls : list items
+- vim : text editor
+- nano : the text editor i use ;)
+- mkdir : make directory
+- mv : move file or rename
+- rm : remove file
+- man : display manual
+- ps : display information about running processes
+- wget : download files from web
+- sudo : execute command with superuser privileges
+- ssh : secure shell for remote login
 
 DOM:
 - tree structure where each node corresponds to an object
@@ -50,12 +64,14 @@ DOM:
 - traversal selection (parent node, child node, query selector)
 
 HTML:
-    -
+- anchor tags are use to create hyperlinks, allowing the user to navigate from one page to another (href="URL")
+- <!DOCTYPE html> is the document type declaration
 
 CSS:
 - # is id, .<name> is class
 - padding : space between content and border
 - margin : space between border and neighboring contents
+- box model :inside out , content -> padding -> border -> margin
 
 Javascript:
 - Arrow Function:
