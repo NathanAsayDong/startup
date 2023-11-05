@@ -28,3 +28,10 @@ Status Codes:
 - Essentail makes it so that javascript can only make requests to the same domain
 - CORS allows the client or browser to specifify the origin of a request (Origin: domain)
 - It neads to be indicated in the header
+
+#Node.js
+- Creator: Ryan Dahl
+- NVM: node version manager
+- Node: Javascript Runtime
+- NPM: Node package manager
+- check node version: node -v
