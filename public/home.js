@@ -6,19 +6,44 @@ function NateTestButton() {
 // classes = getClasses()
 // assignments = getAssignments();
 
-function getCurrentTime() {
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const seconds = now.getSeconds().toString().padStart(2, '0');
+async function getCurrentTime() {
+    try {
+        // Replace 'http://worldtimeapi.org/api/ip' with the appropriate API endpoint
+        const response = await fetch('http://worldtimeapi.org/api/ip');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-    return `${hours}:${minutes}:${seconds}`;
+        const data = await response.json();
+        const utcDatetime = new Date(data.utc_datetime);
+        return utcDatetime;
+    } catch (error) {
+        console.error('Error fetching current time:', error.message);
+        return null;
+    }
 }
 
-function displayCurrentTime() {
-    const currentTime = getCurrentTime();
-    const timeDisplay = document.getElementById('timeDisplay');
-    timeDisplay.textContent = `Time: ${currentTime}`;
+async function displayCurrentTime() {
+    const currentTime = await getCurrentTime();
+
+    if (currentTime !== null) {
+        const timeOptions = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            timeZoneName: 'short',
+            timeZone: 'UTC', // Adjust this to your desired time zone
+        };
+
+        const formattedTime = new Intl.DateTimeFormat('en-US', timeOptions).format(currentTime);
+
+        const timeDisplay = document.getElementById('timeDisplay');
+        timeDisplay.textContent = `${formattedTime}`;
+    }
+
     // reset the loop for another 30 seconds
     setTimeout(displayCurrentTime, 30000);
 }

@@ -57,7 +57,8 @@ STARTUP SERVICE CHECKLIST:
         -made index.js
         -done, app.use(express.static('public'));
 - [x] Your frontend calls third party service endpoints
-        
+        -home page uses world clock api and now displays time on home page
+        -done
 - [x] Your backend provides service endpoints
         -made temporary const variables and returned them as json responses
         -done
