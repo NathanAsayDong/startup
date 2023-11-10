@@ -49,5 +49,14 @@ STARTUP JS CHECKLIST:
 - [x] Multiple Git commits with meaningful comments.
     -done
 
+STARTUP SERVICE CHECKLIST:
+- [ ] Create an HTTP service using Node.js and Express
+- [ ] Frontend served up using express static middleware
+- [ ] Your frontend calls third party service endpoints
+- [ ] Your backend provides service endpoints
+- [ ] Your frontend calls your service endpoints
+- [ ] Multiple Git commits with meaningful comments.
+
+
 
 
