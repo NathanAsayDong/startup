@@ -14,6 +14,11 @@ form.addEventListener('submit', (event) => {
     const password = document.querySelector('#password').value;
 
     // logic to access login database and return true or false here
+    apiRouter.get('api/login', (req, res) => {
+        if (res) {
+            window.location.href = "home.html";
+        }
+    })
 
 
     // if turn then redirect to home page
