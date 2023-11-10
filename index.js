@@ -14,15 +14,8 @@ app.use(express.static('public'));
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-// GetScores
-apiRouter.get('/scores', (_req, res) => {
-  res.send(scores);
-});
-
-// SubmitScore
-apiRouter.post('/score', (req, res) => {
-  scores = updateScores(req.body, scores);
-  res.send(scores);
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
 });
 
 // Return the application's default page if the path is unknown
@@ -30,30 +23,68 @@ app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+///////// DONT TOUCH ABOVE THIS //////////
+
+apiRouter.get('/login', (req, res) => {
+  console.log("Login Request")
+  testJson = {response: "IT RESPONDED"}
+  res.send( testJson )
 });
 
-// updateScores considers a new score for inclusion in the high scores.
-// The high scores are saved in memory and disappear whenever the service is restarted.
-let scores = [];
-function updateScores(newScore, scores) {
-  let found = false;
-  for (const [i, prevScore] of scores.entries()) {
-    if (newScore.score > prevScore.score) {
-      scores.splice(i, 0, newScore);
-      found = true;
-      break;
+apiRouter.get('/tasks', (req, res) => {
+  console.log("Tasks Request")
+  testJson = [
+    {
+      "Class": "Math",
+      "ProjectType": "Homework",
+      "Difficulty": "Medium",
+      "Priority": "High",
+      "Description": "Complete exercises 1-10",
+      "AssignmentName": "Homework 1",
+      "DueDate": "2023-11-01"
+    },
+    {
+      "Class": "History",
+      "ProjectType": "Quiz",
+      "Difficulty": "Easy",
+      "Priority": "Medium",
+      "Description": "Study for the quiz on chapter 3",
+      "AssignmentName": "Quiz on Chapter 3",
+      "DueDate": "2023-11-05"
+    },
+    {
+      "Class": "Science",
+      "ProjectType": "Project",
+      "Difficulty": "Hard",
+      "Priority": "High",
+      "Description": "Research and present on a scientific topic",
+      "AssignmentName": "Science Project",
+      "DueDate": "2023-11-10"
+    },
+    {
+      "Class": "English",
+      "ProjectType": "Homework",
+      "Difficulty": "Medium",
+      "Priority": "Low",
+      "Description": "Read pages 50-100 and write a summary",
+      "AssignmentName": "Reading Assignment",
+      "DueDate": "2023-11-15"
+    },
+    {
+      "Class": "Computer Science",
+      "ProjectType": "Test",
+      "Difficulty": "Hard",
+      "Priority": "High",
+      "Description": "Prepare for the final exam",
+      "AssignmentName": "Final Exam",
+      "DueDate": "2023-11-30"
     }
-  }
+  ]
+  res.send( testJson )
+});
+  
 
-  if (!found) {
-    scores.push(newScore);
-  }
 
-  if (scores.length > 10) {
-    scores.length = 10;
-  }
 
-  return scores;
-}
+
+
