@@ -50,12 +50,21 @@ STARTUP JS CHECKLIST:
     -done
 
 STARTUP SERVICE CHECKLIST:
-- [ ] Create an HTTP service using Node.js and Express
-- [ ] Frontend served up using express static middleware
-- [ ] Your frontend calls third party service endpoints
-- [ ] Your backend provides service endpoints
-- [ ] Your frontend calls your service endpoints
-- [ ] Multiple Git commits with meaningful comments.
+- [x] Create an HTTP service using Node.js and Express
+        -done, initialized with npm init -y and npm install express
+        -moved files to public folder
+- [x] Frontend served up using express static middleware
+        -made index.js
+        -done, app.use(express.static('public'));
+- [x] Your frontend calls third party service endpoints
+        
+- [x] Your backend provides service endpoints
+        -made temporary const variables and returned them as json responses
+        -done
+- [x] Your frontend calls your service endpoints
+        -login and home page each have functions that calls service
+- [x] Multiple Git commits with meaningful comments.
+        -done
 
 
 
