@@ -79,7 +79,20 @@ STARTUP DATABASE CHECKLIST:
         -multiple functions to get / post in the database
 - [x] Multiple Git commits with meaningful comments.
 
-
+STARTUP AUTHENTICATION CHECKLIST:
+- [x] Supports new user registration
+        -done
+        -register page is set up to add new users to database
+- [x] Supports existing user authentication
+        -done
+        -login page is set up to check if user exists in database
+- [x] Stores and retrieves credentials in MongoDB
+        -done
+        -database is set up to store user credentials
+- [x] Restricts application functionality based upon authentication
+        -done
+        -if user is not logged in, they cannot access the calendar page
+- [x] Multiple Git commits with meaningful comments.
 
 
 
