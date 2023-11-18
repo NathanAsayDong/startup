@@ -6,6 +6,7 @@ const client = new MongoClient(url);
 const db = client.db('startup');
 const classesCollection = db.collection('classes');
 const tasksCollection = db.collection('tasks');
+const userCollection = db.collection('user');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -15,6 +16,28 @@ const tasksCollection = db.collection('tasks');
   console.log(`Unable to connect to database with ${url} because ${ex.message}`);
   process.exit(1);
 });
+
+function getUser(email) {
+  return userCollection.findOne({ email: email });
+}
+
+function getUserByToken(token) {
+  return userCollection.findOne({ token: token });
+}
+
+async function createUser(email, password) {
+  // Hash the password before we insert it into the database
+  const passwordHash = await bcrypt.hash(password, 10);
+
+  const user = {
+    email: email,
+    password: passwordHash,
+    token: uuid.v4(),
+  };
+  await userCollection.insertOne(user);
+
+  return user;
+}
 
 async function addClass(className) {
   const result = await classesCollection.insertOne(className);
@@ -43,4 +66,4 @@ async function getTasks() {
 //   return cursor.toArray();
 // }
 
-module.exports = { addClass, addTask , getClasses, getTasks };
+module.exports = { addClass, addTask , getClasses, getTasks, getUser, getUserByToken, createUser };
