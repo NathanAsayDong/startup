@@ -39,6 +39,10 @@ async function login() {
     }
 }
 
+async function createAccount() {
+    loginOrCreate(`/api/auth/create`);
+}
+
 function NateTestButton() {
     console.log("NateTestButton")
 }
