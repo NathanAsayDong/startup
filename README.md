@@ -67,6 +67,20 @@ STARTUP SERVICE CHECKLIST:
 - [x] Multiple Git commits with meaningful comments.
         -done
 
+STARTUP DATABASE CHECKLIST:
+- [x] Create a MongoDB Atlas database
+        -done
+        -database name: startup
+- [x] Provide backend endpoints for manipulating application data
+        -done
+        -endpoints are in index.js and created mongoDBService.js
+- [x] Store application data in MongoDB
+        -done
+        -multiple functions to get / post in the database
+- [x] Multiple Git commits with meaningful comments.
+
+
+
 
 
 
