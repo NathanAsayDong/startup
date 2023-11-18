@@ -9,10 +9,10 @@
 </head>
 <body>
     <nav>
-        <h3 class="brand-title"><a href="home.html">HOMEWORK_MINDER.io</a></h3>
-        <h2 class="nav-button"><a href="addAssignment.html">Add Assignment</a></h2>
-        <h2 class="nav-button"><a href="announcements.html">Announcements</a></h2>
-        <h2 class="nav-button"><a href="index.html">Sign Out</a></h2>
+        <button type="button" class="brand-title" onClick="navToHome()">HOMEWORK_MINDER.io</button>
+        <button type="button" class="nav-button" onClick="navToAssignments()">Add Assignments</button>
+        <button type="button" class="nav-button" onClick="navToAnnouncments()">Announcements</button>
+        <button type="button" class="nav-button" onClick="logout()">Sign Out</button>
     </nav>
 
     <h3 id="timeDisplay">Time displayed here (this will use websocket)</h3>

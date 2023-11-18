@@ -10,8 +10,10 @@ form.addEventListener('submit', (event) => {
 
     // logic to access login database and return true or false here
     if (login()) {
-        console.log("Login Successful");
-        window.location.href = "home.html";
+        login();
+    }
+    if (createAccount()) {
+        createAccount();
     }
     else {
         throw new Error("Login Failed");
@@ -20,28 +22,6 @@ form.addEventListener('submit', (event) => {
     // if turn then redirect to home page
     
 });
-
-async function login() {
-    // const username = document.querySelector('#username').value;
-    // const password = document.querySelector('#password').value;
-    const username = "test";
-    const password = "test";
-    console.log('start')
-
-    try {
-        const response = await fetch('/api/login')
-        const data = await response.json();
-        console.log(data.response);
-        return (true);
-    }
-    catch (err) {
-        console.log(err);
-    }
-}
-
-async function createAccount() {
-    loginOrCreate(`/api/auth/create`);
-}
 
 function NateTestButton() {
     console.log("NateTestButton")
@@ -56,31 +36,31 @@ function forgotPassword() {
 
 
 
-// simon install
-
-(async () => {
-    const userName = localStorage.getItem('userName');
-    if (userName) {
-    document.querySelector('#playerName').textContent = userName;
-    setDisplay('loginControls', 'none');
-    setDisplay('playControls', 'block');
-    } else {
-    setDisplay('loginControls', 'block');
-    setDisplay('playControls', 'none');
-    }
-})();
-
-async function loginUser() {
+// login functionality
+async function login() {
     loginOrCreate(`/api/auth/login`);
 }
 
-async function createUser() {
+async function createAccount() {
     loginOrCreate(`/api/auth/create`);
 }
 
+// Dont need this possibly
+// (async () => {
+//     const userName = localStorage.getItem('userName');
+//     if (userName) {
+//     document.querySelector('#playerName').textContent = userName;
+//     setDisplay('loginControls', 'none');
+//     setDisplay('playControls', 'block');
+//     } else {
+//     setDisplay('loginControls', 'block');
+//     setDisplay('playControls', 'none');
+//     }
+// })();
+
 async function loginOrCreate(endpoint) {
-    const userName = document.querySelector('#userName')?.value;
-    const password = document.querySelector('#userPassword')?.value;
+    const userName = document.querySelector('#username')?.value;
+    const password = document.querySelector('#password')?.value;
     const response = await fetch(endpoint, {
     method: 'post',
     body: JSON.stringify({ email: userName, password: password }),
@@ -91,7 +71,7 @@ async function loginOrCreate(endpoint) {
 
     if (response.ok) {
     localStorage.setItem('userName', userName);
-    window.location.href = 'play.html';
+    window.location.href = 'home.html';
     } else {
     const body = await response.json();
     const modalEl = document.querySelector('#msgModal');

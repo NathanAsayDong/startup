@@ -113,6 +113,25 @@ priorityFilter.addEventListener('change', () => {
     displayFilteredAssignments(classFilter.value.toString(), difficultyFilter.value.toString(), priorityFilter.value.toString());
 });
 
+function logout() {
+    localStorage.removeItem('userName');
+    fetch(`/api/auth/logout`, {
+    method: 'delete',
+    }).then(() => (window.location.href = '/'));
+}
+
+function navToAnnouncments() {
+    window.location.href = 'announcements.html';
+}
+
+function navToHome() {
+    window.location.href = 'home.html';
+}
+
+function navToAddAssignment() {
+    window.location.href = 'addAssignment.html';
+}
+
 
 
 

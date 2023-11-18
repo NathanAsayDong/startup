@@ -41,57 +41,6 @@ apiRouter.get('/login', (req, res) => {
   res.send( testJson )
 });
 
-// apiRouter.get('/tasks', (req, res) => {
-//   console.log("Tasks Request")
-//   testJson = [
-//     {
-//       "Class": "Math",
-//       "ProjectType": "Homework",
-//       "Difficulty": "Medium",
-//       "Priority": "High",
-//       "Description": "Complete exercises 1-10",
-//       "AssignmentName": "Homework 1",
-//       "DueDate": "2023-11-01"
-//     },
-//     {
-//       "Class": "History",
-//       "ProjectType": "Quiz",
-//       "Difficulty": "Easy",
-//       "Priority": "Medium",
-//       "Description": "Study for the quiz on chapter 3",
-//       "AssignmentName": "Quiz on Chapter 3",
-//       "DueDate": "2023-11-05"
-//     },
-//     {
-//       "Class": "Science",
-//       "ProjectType": "Project",
-//       "Difficulty": "Hard",
-//       "Priority": "High",
-//       "Description": "Research and present on a scientific topic",
-//       "AssignmentName": "Science Project",
-//       "DueDate": "2023-11-10"
-//     },
-//     {
-//       "Class": "English",
-//       "ProjectType": "Homework",
-//       "Difficulty": "Medium",
-//       "Priority": "Low",
-//       "Description": "Read pages 50-100 and write a summary",
-//       "AssignmentName": "Reading Assignment",
-//       "DueDate": "2023-11-15"
-//     },
-//     {
-//       "Class": "Computer Science",
-//       "ProjectType": "Test",
-//       "Difficulty": "Hard",
-//       "Priority": "High",
-//       "Description": "Prepare for the final exam",
-//       "AssignmentName": "Final Exam",
-//       "DueDate": "2023-11-30"
-//     }
-//   ]
-//   res.send( testJson )
-// });
 
 apiRouter.get('/tasks', async (req, res) => {
   console.log("Tasks Request")
