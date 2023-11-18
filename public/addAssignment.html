@@ -21,7 +21,7 @@
     <div class="add-class-form" data-show-if="showNewClassForm">
         <form action="#" method="get" id="newClassForm">
             <label for="class">Class</label>
-            <input type="text" id="class" name="class" required placeholder="class">
+            <input type="text" id="newClass" name="class" required placeholder="class">
 
             <button type="submit"  class="submit-button">Submit New Class</button>
         </form>
@@ -32,7 +32,7 @@
 
         <form action="#" method="get" id="addAssignement">
             <label for="Class">Class</label>
-            <input type="text" id="username" name="username" required placeholder="class">
+            <input type="text" id="className" name="username" required placeholder="class">
     
             <label for="projectType">Project Type</label>
             <select id="projectType" name="projectType">
@@ -44,14 +44,14 @@
             </select>
 
             <label for="difficulty">Difficulty Level</label>
-            <select type="difficulty" name="difficulty">
+            <select id="difficulty" type="difficulty" name="difficulty">
                 <option value="easy">Easy</option>
                 <option value="medium">Medium</option>
                 <option value="hard">Hard</option>
             </select>
 
             <label for="priority">Priority</label>
-            <select type="priority" name="priority">
+            <select id="priority" type="priority" name="priority">
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
                 <option value="high">High</option>

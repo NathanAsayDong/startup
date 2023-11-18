@@ -16,22 +16,32 @@ function toggleNewClassForm() {
     newClassForm.style.display = showNewClassForm ? 'block' : 'none';
 }
 
-function getClasses() {
-    //  getter function to get all the classes from database
-}
-
 function getAssignments() {
     //  getter function to get all the assignments from database
 }
 
-newClassForm.addEventListener('submit', (event) => {
+newClassForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
     const newClass = document.querySelector('#newClass').value;
 
-    // add logic to add the new class to the database here
+    console.log("Form Submit");
+    console.log(newClass);
+
+    const newClassObject = {class : newClass}
+    console.log(newClassObject);
+    try {
+        const response = await fetch('/api/classes', {
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify(newClassObject),
+        });
+    } catch {
+        console.log("error adding class")
+    }
 });
 
 
-addAssignmentForm.addEventListener('submit', (event) => {
+addAssignmentForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     console.log("Form Submit");
 
@@ -40,7 +50,6 @@ addAssignmentForm.addEventListener('submit', (event) => {
     const difficulty = document.querySelector('#difficulty').value;
     const priority = document.querySelector('#priority').value;
     const description = document.querySelector('#description').value;
-    const assignmentName = document.querySelector('#assignmentName').value;
     const dueDate = document.querySelector('#dueDate').value;
 
     const assignment = {
@@ -49,12 +58,20 @@ addAssignmentForm.addEventListener('submit', (event) => {
         difficulty: difficulty,
         priority: priority,
         description: description,
-        assignmentName: assignmentName,
         dueDate: dueDate,
+        creationDate: new Date(),
     }
-
-    // logic to add assignement to database here
-
+    console.log(assignment);
+    try {
+        const response = await fetch('/api/tasks', {
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify(assignment),
+        });
+        } catch {
+        // If there was an error then just track scores locally
+        console.log("error adding task")
+        }
 
 });
 
