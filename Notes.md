@@ -30,7 +30,7 @@ Https / TLS / Web Certificates:
 
 
 deploy code:
-./deployFiles.sh -k /Users/nathandong/Desktop/Personal/Classes/CS260/NateKey.pem -h homework-minder.com -s simon
+./deployService.sh -k /Users/nathandong/Desktop/Personal/Classes/CS260/NateKey.pem -h homework-minder.com -s simon
 
 
 Midterm Notes:
