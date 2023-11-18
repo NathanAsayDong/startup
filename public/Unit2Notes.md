@@ -132,5 +132,14 @@ If you run `pm2 ls` again you should see your web service listed. You can now ac
 ### Playwright
 - backed by microsoft, integrates with VS code, and it ursn as a node.js process (used for testing UI)
 
-#
+# Databases
 
+| Service       | Specialty             |
+| ------------- | --------------------- |
+| MySQL         | Relational queries    |
+| Redis         | Memory cached objects |
+| ElasticSearch | Ranked free text      |
+| MongoDB       | JSON objects          |
+| DynamoDB      | Key value pairs       |
+| Neo4J         | Graph based data      |
+| InfluxDB      | Time series data      |
