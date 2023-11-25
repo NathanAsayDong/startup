@@ -94,6 +94,9 @@ STARTUP AUTHENTICATION CHECKLIST:
         -if user is not logged in, they cannot access the calendar page
 - [x] Multiple Git commits with meaningful comments.
 
-
-
-
+Websocket Checklist:
+- [x] Backend listens for WebSocket connection
+- [x] Frontend makes WebSocket connection
+- [x] Data sent over WebSocket connection
+- [x] WebSocket data displayed in the application interface
+- [x] Multiple Git commits with meaningful comments.
