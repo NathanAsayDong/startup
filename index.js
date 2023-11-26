@@ -4,6 +4,8 @@ const DB = require('./mongoDBService.js');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const authCookieName = 'token';
+const { WebSocketServer } = require('ws');
+const uuid = require('uuid');
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -64,10 +66,13 @@ apiRouter.post('/classes', (req, res) => {
   res.send(req.body)
 });
 
-apiRouter.get('/classes', (req, res) => {
+apiRouter.get('/classes', async (req, res) => {
   console.log("Classes Get Request")
-  res.send(DB.getClasses());
+  classes = await DB.getClasses();
+  res.send(classes);
 });
+
+
 
 
 // login functionality
@@ -142,6 +147,19 @@ function setAuthCookie(res, authToken) {
   });
 }
 
+// websocket implementation
+const wss = new WebSocketServer({ port: 9900 });
+console.log(wss)
 
+wss.on('connection', (ws) => {
+    ws.on('message', (data) => {
+    const msg = String.fromCharCode(...data);
+    console.log('received: %s', msg);
+
+    ws.send(`I heard you say "${msg}"`);
+    });
+
+    ws.send('Hello webSocket');
+});
 
 

@@ -8,6 +8,7 @@
     <title>Announcements</title>
     <link rel="icon" href="./Assets/HomeworkMinder.io__1_-removebg-preview.webp" type="image/x-icon">
     <link rel="stylesheet" href="./announcements.css">
+
 </head>
 <body>
     <nav>
@@ -19,37 +20,28 @@
         </nav>
     </nav>
 
-    <h1>Announcements</h1>
-    <p>(main usage of websocket here)</p>
-    <div class="temp-border-box" style="border: 2px solid black; width: 300px; height: 300px;">
-        <p>all announcements will go in here maybe with a drop down filter as well</p>
-        <table>
-            <thead>
+    <label for="classSelector">Select a Class:</label>
+    <select id="classSelector">
+        <!-- Options will be added dynamically using JavaScript -->
+    </select>
+
+    <h1>Class Chat</h1>
+        <div class="temp-border-box" style="border: 2px solid black; width: 300px; height: 300px;">
+            <table class="table table-warning table-striped-columns">
+                <thead class="table-dark">
                 <tr>
                     <th>Class</th>
-                    <th>Content</th>
-                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Announcment</th>
                 </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Class 1</td>
-                    <td>Content 1</td>
-                    <td>Date 1</td>
-                </tr>
-                <tr>
-                    <td>Class 2</td>
-                    <td>Content 2</td>
-                    <td>Date 2</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>continue new rows as new announcements come in</p>
-    </div>
+                </thead>
+                <tbody id="announcments"></tbody>
+            </table>
+        </div>
 
     <footer>
         Created by Nathan Dong
     </footer>
-
+<script src="./announcments.js"></script>
 </body>
 </html>

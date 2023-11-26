@@ -53,7 +53,6 @@ async function addTask(task) {
 
 async function getClasses() {
   const result = await classesCollection.find({}, { projection: { class: 1, _id: 0 } }).toArray();
-  console.log(result);
   return result;
 }
 
