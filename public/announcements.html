@@ -25,19 +25,19 @@
         <!-- Options will be added dynamically using JavaScript -->
     </select>
 
-    <h1>Class Chat</h1>
-        <div class="temp-border-box" style="border: 2px solid black; width: 300px; height: 300px;">
-            <table class="table table-warning table-striped-columns">
-                <thead class="table-dark">
-                <tr>
-                    <th>Class</th>
-                    <th>Time</th>
-                    <th>Announcment</th>
-                </tr>
-                </thead>
-                <tbody id="announcments"></tbody>
-            </table>
+    <div id="chatContainer">
+        <h1 id="chatHeader">Class Chat</h1>
+
+        <div id="chatContainer">
+            <!-- Messages will be added dynamically using JavaScript -->
         </div>
+
+        <div>
+            <label for="messageInput">Your Message:</label>
+            <input type="text" id="messageInput">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
 
     <footer>
         Created by Nathan Dong

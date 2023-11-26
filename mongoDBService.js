@@ -2,7 +2,6 @@ const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
-
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 const db = client.db('startup');
@@ -41,6 +40,11 @@ async function createUser(email, password) {
   return user;
 }
 
+async function getUserName(token) {
+  const user = await userCollection.findOne({ token: token });
+  return user.email;
+}
+
 async function addClass(className) {
   const result = await classesCollection.insertOne(className);
   return result;
@@ -67,4 +71,4 @@ async function getTasks() {
 //   return cursor.toArray();
 // }
 
-module.exports = { addClass, addTask , getClasses, getTasks, getUser, getUserByToken, createUser };
+module.exports = { addClass, addTask , getClasses, getTasks, getUser, getUserByToken, createUser, getUserName };
