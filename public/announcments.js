@@ -58,13 +58,39 @@ async function populateDropdown() {
 
 socket.onmessage = (event) => {
     console.log('received: ', event.data);
+    const messageObj = JSON.parse(event.data);
+
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message');
+
+    // Construct the message content based on the messageObj
+    let messageContent = `<strong>${messageObj.user}</strong>: ${messageObj.message}`;
+
+    if (messageObj.class !== null) {
+        messageContent += ` (Class: ${messageObj.class})`;
+    }
+
+    // Set the message content
+    messageElement.innerHTML = messageContent;
+
+    // Append the message element to the chat container
+    const chatContainer = document.getElementById('chatContainer');
+    chatContainer.appendChild(messageElement);
 };
 
 
-function sendMessage() {
+async function sendMessage() {
     const message = document.getElementById('messageInput').value;
     console.log('this is message: ', message)
-    socket.send(message);
+    messageObj = {
+        user: current_user,
+        message: message,
+        class: selectedClassChat
+    }
+    console.log('this is messageObj before : ', messageObj)
+    messageObj = JSON.stringify(messageObj);
+    console.log('this is messageObj: ', messageObj)
+    socket.send(messageObj);
     document.getElementById('messageInput').value = '';
 }
 

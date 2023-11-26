@@ -167,12 +167,10 @@ function setAuthCookie(res, authToken) {
 const wss = new WebSocketServer({ port: 9900 });
 wss.on('connection', (ws) => {
   ws.on('message', (data) => {
-    const msg = String.fromCharCode(...data);
-    console.log('received: %s', msg);
-
-    ws.send(`I heard you say "${msg}"`);
+    messageObj = JSON.parse(data); // get the data formatted as a JSON object
+    messageObj = JSON.stringify(messageObj); // reformate as a string
+    ws.send(messageObj);
   });
-
-  ws.send('Hello webSocket');
+  // ws.send('Hello webSocket');
 });
 
