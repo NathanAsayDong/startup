@@ -29,7 +29,7 @@ app.set('trust proxy', true);
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
@@ -164,13 +164,65 @@ function setAuthCookie(res, authToken) {
 }
 
 // websocket implementation
-const wss = new WebSocketServer({ port: 9900 });
-wss.on('connection', (ws) => {
-  ws.on('message', (data) => {
-    messageObj = JSON.parse(data); // get the data formatted as a JSON object
-    messageObj = JSON.stringify(messageObj); // reformate as a string
-    ws.send(messageObj);
+
+const wss = new WebSocketServer({ noServer: true });
+
+httpService.on('upgrade', (request, socket, head) => {
+  wss.handleUpgrade(request, socket, head, function done(ws) {
+    wss.emit('connection', ws, request);
   });
-  // ws.send('Hello webSocket');
 });
 
+connections = [];
+
+wss.on('connection', (ws) => {
+  const connection = { id: uuid.v4(), alive: true, ws: ws };
+  connections.push(connection);
+
+  // Forward messages to everyone except the sender
+  ws.on('message', function message(data) {
+    messageObj = JSON.parse(data); // get the data formatted as a JSON object
+    messageObj = JSON.stringify(messageObj); // reformate as a string
+    connections.forEach((c) => {
+    c.ws.send(messageObj);
+    });
+  });
+
+
+  // Remove the closed connection so we don't try to forward anymore
+  ws.on('close', () => {
+    connections.findIndex((o, i) => {
+      if (o.id === connection.id) {
+        connections.splice(i, 1);
+        return true;
+      }
+    });
+  });
+});
+
+// Keep active connections alive
+setInterval(() => {
+  connections.forEach((c) => {
+    // Kill any connection that didn't respond to the ping last time
+    if (!c.alive) {
+      c.ws.terminate();
+    } else {
+      c.alive = false;
+      c.ws.ping();
+    }
+  });
+}, 10000);
+
+
+
+//// previous code
+
+// const wss = new WebSocketServer({ port: 9900 });
+// wss.on('connection', (ws) => {
+//   ws.on('message', (data) => {
+//     messageObj = JSON.parse(data); // get the data formatted as a JSON object
+//     messageObj = JSON.stringify(messageObj); // reformate as a string
+//     ws.send(messageObj);
+//   });
+//   // ws.send('Hello webSocket');
+// });

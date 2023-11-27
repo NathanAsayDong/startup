@@ -1,4 +1,5 @@
-socket = new WebSocket('ws://localhost:9900');
+const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
 current_user = null;
 availableClasses = [];
 selectedClassChat = null;
@@ -92,6 +93,8 @@ async function sendMessage() {
     console.log('this is messageObj: ', messageObj)
     socket.send(messageObj);
     document.getElementById('messageInput').value = '';
+
+    
 }
 
 
