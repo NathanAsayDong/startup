@@ -96,7 +96,12 @@ STARTUP AUTHENTICATION CHECKLIST:
 
 Websocket Checklist:
 - [x] Backend listens for WebSocket connection
+        -created HTTP Service, and created websocket that creates list of connections and conncets succesfully
 - [x] Frontend makes WebSocket connection
+        -announcemnets.js now connects to websocket
 - [x] Data sent over WebSocket connection
+        -creates message json object and sends over websocket
 - [x] WebSocket data displayed in the application interface
+        -announcments.js now displays message from websocket
 - [x] Multiple Git commits with meaningful comments.
+        -done
