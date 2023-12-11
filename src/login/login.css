@@ -1,0 +1,14 @@
+.title-bottom {
+    font-size: 80px;
+}
+
+.title-container {
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}

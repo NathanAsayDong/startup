@@ -1,0 +1,32 @@
+.body {
+    display : flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 60%;
+    margin: 0 0 20px 0;
+    flex-wrap: wrap;
+    padding-top: 10px;
+}
+
+.rectangle {
+    width: 80%;
+    height: 5vh;
+    background-color: #3498db; /* Set your desired background color */
+    border: 2px solid #2980b9; /* Set your desired border color */
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+.graph {
+    width: 80%;
+    height: 20vh;
+    background-color: #3498db; /* Set your desired background color */
+    border: 2px solid #2980b9; /* Set your desired border color */
+    box-sizing: border-box;
+}

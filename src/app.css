@@ -1,5 +1,8 @@
-.body {
-    background-color: black;
+.content-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
 }
 
 p, h1, h2, h3, h4, h5, h6 {
@@ -15,6 +18,15 @@ p, h1, h2, h3, h4, h5, h6 {
     height: 60px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.title {
+    margin-right: 10px;
 }
 
 

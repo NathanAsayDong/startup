@@ -11,24 +11,21 @@ import { Login } from './login/login';
 export default function App() {
     return (
     <BrowserRouter>
-    <div className='body'>
         <nav className="nav-header">
             <div className="header-content">
-                <h2>Simple.</h2>
+                <h2 className='title'>Simple.</h2>
                 <NavLink className='nav-link' to='login'>Log out</NavLink>
                 <NavLink className='nav-link' to='addTransaction'>Add Transaction</NavLink>
+                <NavLink className='nav-link' to='/'>Home</NavLink>
             </div>
         </nav>
-
-        <Home />
-
-
+        
         <Routes>
-            <Route path='/login' element={<Login />} exact />
+            <Route path='/' element={<Home />} exact />
+=           <Route path='/login' element={<Login />} exact />
             <Route path='/addTransaction' element={<AddTransaction />} exact />
         </Routes>
 
-    </div>
     </BrowserRouter>
     );
 }

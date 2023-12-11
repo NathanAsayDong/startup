@@ -76,6 +76,13 @@ apiRouter.get('/classes', async (req, res) => {
   res.send(classes);
 });
 
+apiRouter.post('/newTransaction', (req, res) => {
+  console.log("New Transaction Request")
+  console.log(req.body)
+  DB.addTransaction(req.body);
+  res.send(req.body)
+});
+
 
 
 

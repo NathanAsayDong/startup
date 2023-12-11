@@ -1,5 +1,6 @@
 import 'firebase/auth';
 import React, { useState } from 'react';
+import './login.css';
 
 export function Login() {
         const [email, setEmail] = useState('');
@@ -39,7 +40,12 @@ export function Login() {
     };
 
 return (
-    <main className='container-fluid bg-secondary text-center'>
+    <>
+        
+        <div className='title-container'>
+            <p className='title-top'>Budgeting made,</p>
+            <h1 className='title-bottom'>Simple.</h1>
+        </div>
         <div className="row justify-content-center">
         <div className="col-12 col-sm-6 col-md-4">
         <form className="mt-5">
@@ -78,7 +84,7 @@ return (
             {error && <p className="text-danger mt-3">{error}</p>}
         </form>
         </div>
-    </div>
-    </main>
+        </div>
+    </>
 );
 }

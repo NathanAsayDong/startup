@@ -19,11 +19,6 @@ export function DropDownSelector ({ selectedCategory, onCategoryChange }) {
                     </option>
                 ))}
             </select>
-            {selectedCategory && (
-                <div>
-                    <p>You selected: {selectedCategory}</p>
-                </div>
-            )}
         </div>
     );
 }

@@ -8,6 +8,7 @@ const db = client.db('startup');
 const classesCollection = db.collection('classes');
 const tasksCollection = db.collection('tasks');
 const userCollection = db.collection('user');
+const transactionCollection = db.collection('transaction');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -65,10 +66,15 @@ async function getTasks() {
   return result;
 }
 
+async function addTransaction(Transaction) {
+  const result = await transactionCollection.insertOne(Transaction);
+  return result;
+}
+
 // function getTasks() {
 //   const query = { score: { $gt: 0, $lt: 900 } };
 //   const cursor = scoreCollection.find(query, options);
 //   return cursor.toArray();
 // }
 
-module.exports = { addClass, addTask , getClasses, getTasks, getUser, getUserByToken, createUser, getUserName };
+module.exports = { addClass, addTask , getClasses, getTasks, getUser, getUserByToken, createUser, getUserName, addTransaction };
