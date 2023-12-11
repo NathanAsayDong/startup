@@ -1,228 +1,100 @@
-const express = require('express');
-const http = require('http');
-const app = express();
-const DB = require('./mongoDBService.js');
-const cookieParser = require('cookie-parser');
-const bcrypt = require('bcrypt');
-const authCookieName = 'token';
-const uuid = require('uuid');
-const { WebSocketServer } = require('ws');
+const form = document.querySelector('#loginForm');
 
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    console.log("Form Submit");
 
+    // Get the username and password input values
+    const username = document.querySelector('#username').value;
+    const password = document.querySelector('#password').value;
 
-// The service port. In production the front-end code is statically hosted by the service on the same port.
-port = process.argv.length > 2 ? process.argv[2] : 4000;
+    // logic to access login database and return true or false here
+    if (login()) {
+        login();
+    }
+    if (createAccount()) {
+        createAccount();
+    }
+    else {
+        throw new Error("Login Failed");
+    }
 
-// JSON body parsing using built-in middleware
-app.use(express.json());
-
-// Serve up the front-end static content hosting
-app.use(express.static('public'));
-
-// Use the cookie parser middleware for tracking authentication tokens
-app.use(cookieParser());
-
-// Trust headers that are forwarded from the proxy so we can determine IP addresses
-app.set('trust proxy', true);
-
-// Router for service endpoints
-var apiRouter = express.Router();
-app.use(`/api`, apiRouter);
-
-const httpService = app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+    // if turn then redirect to home page
+    
 });
 
-// Return the application's default page if the path is unknown
-app.use((_req, res) => {
-  res.sendFile('index.html', { root: 'public' });
-});
+function NateTestButton() {
+    console.log("NateTestButton")
+}
 
+// for now this is actually being used as a test button
+function forgotPassword() {
+    console.log("forgotPassword")
 
-///////// DONT TOUCH ABOVE THIS //////////
-
-apiRouter.get('/login', (req, res) => {
-  console.log("Login Request")
-  testJson = {response: "IT RESPONDED"}
-  res.send( testJson )
-});
-
-
-apiRouter.get('/tasks', async (req, res) => {
-  console.log("Tasks Request")
-  tasks = await DB.getTasks();
-  res.send(tasks);
-});
-
-// add a task to the database
-apiRouter.post('/tasks', (req, res) => {
-  console.log("Tasks Post Request")
-  console.log(req.body)
-  DB.addTask(req.body);
-  res.send(req.body)
-});
-
-// add a class to the database
-apiRouter.post('/classes', (req, res) => {
-  console.log("Classes Post Request")
-  console.log(req.body)
-  DB.addClass(req.body);
-  res.send(req.body)
-});
-
-apiRouter.get('/classes', async (req, res) => {
-  console.log("Classes Get Request")
-  classes = await DB.getClasses();
-  res.send(classes);
-});
-
+    // implement password recent functionality here
+}
 
 
 
 // login functionality
-
-
-// CreateAuth token for a new user
-apiRouter.post('/auth/create', async (req, res) => {
-  if (await DB.getUser(req.body.email)) {
-    res.status(409).send({ msg: 'Existing user' });
-  } else {
-    const user = await DB.createUser(req.body.email, req.body.password);
-
-    // Set the cookie
-    setAuthCookie(res, user.token);
-
-    res.send({
-      id: user._id,
-    });
-  }
-});
-
-// GetAuth token for the provided credentials
-apiRouter.post('/auth/login', async (req, res) => {
-  const user = await DB.getUser(req.body.email);
-  if (user) {
-    if (await bcrypt.compare(req.body.password, user.password)) {
-      setAuthCookie(res, user.token);
-      res.send({ id: user._id });
-      return;
-    }
-  }
-  res.status(401).send({ msg: 'Unauthorized' });
-});
-
-// DeleteAuth token if stored in cookie
-apiRouter.delete('/auth/logout', (_req, res) => {
-  res.clearCookie(authCookieName);
-  res.status(204).end();
-});
-
-// GetUser returns information about a user
-apiRouter.get('/user/:email', async (req, res) => {
-  const user = await DB.getUser(req.params.email);
-  if (user) {
-    const token = req?.cookies.token;
-    res.send({ email: user.email, authenticated: token === user.token });
-    return;
-  }
-  res.status(404).send({ msg: 'Unknown' });
-});
-
-// get the current user
-apiRouter.get('/info', async (req, res) => {
-  const token = req?.cookies.token;
-  const user = await DB.getUserByToken(token);
-  if (user) {
-    res.send({ email: user.email, authenticated: true });
-    return;
-  }
-  res.status(404).send({ msg: 'Unknown' });
-});
-
-// secureApiRouter verifies credentials for endpoints
-var secureApiRouter = express.Router();
-apiRouter.use(secureApiRouter);
-
-secureApiRouter.use(async (req, res, next) => {
-  authToken = req.cookies[authCookieName];
-  const user = await DB.getUserByToken(authToken);
-  console.log("User: ", user)
-  if (user) {
-    next();
-  } else {
-    res.status(401).send({ msg: 'Unauthorized' });
-  }
-});
-
-// setAuthCookie in the HTTP response
-function setAuthCookie(res, authToken) {
-  res.cookie(authCookieName, authToken, {
-    secure: true,
-    httpOnly: true,
-    sameSite: 'strict',
-  });
+async function login() {
+    loginOrCreate(`/api/auth/login`);
 }
 
-// websocket implementation
+async function createAccount() {
+    loginOrCreate(`/api/auth/create`);
+}
 
-const wss = new WebSocketServer({ noServer: true });
+// Dont need this possibly
+// (async () => {
+//     const userName = localStorage.getItem('userName');
+//     if (userName) {
+//     document.querySelector('#playerName').textContent = userName;
+//     setDisplay('loginControls', 'none');
+//     setDisplay('playControls', 'block');
+//     } else {
+//     setDisplay('loginControls', 'block');
+//     setDisplay('playControls', 'none');
+//     }
+// })();
 
-httpService.on('upgrade', (request, socket, head) => {
-  wss.handleUpgrade(request, socket, head, function done(ws) {
-    wss.emit('connection', ws, request);
-  });
-});
-
-connections = [];
-
-wss.on('connection', (ws) => {
-  const connection = { id: uuid.v4(), alive: true, ws: ws };
-  connections.push(connection);
-
-  // Forward messages to everyone except the sender
-  ws.on('message', function message(data) {
-    messageObj = JSON.parse(data); // get the data formatted as a JSON object
-    messageObj = JSON.stringify(messageObj); // reformate as a string
-    connections.forEach((c) => {
-    c.ws.send(messageObj);
+async function loginOrCreate(endpoint) {
+    const userName = document.querySelector('#username')?.value;
+    const password = document.querySelector('#password')?.value;
+    const response = await fetch(endpoint, {
+    method: 'post',
+    body: JSON.stringify({ email: userName, password: password }),
+    headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+    },
     });
-  });
 
-
-  // Remove the closed connection so we don't try to forward anymore
-  ws.on('close', () => {
-    connections.findIndex((o, i) => {
-      if (o.id === connection.id) {
-        connections.splice(i, 1);
-        return true;
-      }
-    });
-  });
-});
-
-// Keep active connections alive
-setInterval(() => {
-  connections.forEach((c) => {
-    // Kill any connection that didn't respond to the ping last time
-    if (!c.alive) {
-      c.ws.terminate();
+    if (response.ok) {
+    localStorage.setItem('userName', userName);
+    window.location.href = 'home.html';
     } else {
-      c.alive = false;
-      c.ws.ping();
+    const body = await response.json();
+    const modalEl = document.querySelector('#msgModal');
+    modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
+    const msgModal = new bootstrap.Modal(modalEl, {});
+    msgModal.show();
     }
-  });
-}, 10000);
+}
 
+async function getUser(email) {
+    let scores = [];
+    // See if we have a user with the given email.
+    const response = await fetch(`/api/user/${email}`);
+    if (response.status === 200) {
+    return response.json();
+    }
 
+    return null;
+}
 
-//// previous code
-
-// const wss = new WebSocketServer({ port: 9900 });
-// wss.on('connection', (ws) => {
-//   ws.on('message', (data) => {
-//     messageObj = JSON.parse(data); // get the data formatted as a JSON object
-//     messageObj = JSON.stringify(messageObj); // reformate as a string
-//     ws.send(messageObj);
-//   });
-//   // ws.send('Hello webSocket');
-// });
+function logout() {
+    localStorage.removeItem('userName');
+    fetch(`/api/auth/logout`, {
+    method: 'delete',
+    }).then(() => (window.location.href = '/'));
+}
