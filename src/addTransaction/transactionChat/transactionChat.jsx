@@ -1,67 +1,119 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { MessageSender } from './messageSocket';
 import './transactionChat.css';
 
+
 export function TransactionChat() {
-    const [messages, setMessages] = useState([]);
-    const [message, setMessage] = useState('');
+    const username = "test";
 
-    const initializeMessages = () => {
-        setMessages([
-            {
-                "id": 1,
-                "text": "Hello Nate",
-                "createdAt": new Date(),
-                "user": {
-                    "id": 2,
-                    "name": "React Native",
-                    "avatar": "https://placeimg.com/140/140/any"
-                }
-            },
-            {
-                "id": 2,
-                "text": "Hello Soph",
-                "createdAt": new Date(),
-                "user": {
-                    "id": 1,
-                    "name": "React Native",
-                    "avatar": "https://placeimg.com/140/140/any"
-                }
-            }
-        ])
-    }
+    const [messages, setMessages] = React.useState([]);
+    const [message, setMessage] = useState([]);
 
-    useEffect(() => {
-        initializeMessages();
-    }, [])
+    React.useEffect(() => {
+        MessageSender.addHandler(handleMessageEvent);
+
+        return () => {
+            MessageSender.removeHandler(handleMessageEvent);
+        };
+    });
+
+    function handleMessageEvent(event) {
+        setMessages([...messages, event]);
+    };
+
 
     const handleNewMessage = () => {
-        setMessages([...messages, {text: message}])
-    }
+        MessageSender.sendMessage(message);
+        setMessage('');
+    };
 
+    function createMessageArray() {
+        const messageArray = [];
+        for (const [i, message] of messages.entries()) {
+            console.log('inside array loop')
+            const new_message = `${message.sender}: ${message.message}`;
+            messageArray.push(
+                <div>
+                    {new_message}
+                </div>
+            );
+        }
+        console.log(messageArray);
+        return messageArray;
+    }
 
     return (
         <>
             <div className='chat-container'>
-            <h3>Transaction Chat</h3>
-                {messages.map((message) => {
-                    return (
-                        <div className='message-container'>
-                            <div className='message'>
-                                <p>{message.text}</p>
-                            </div>
-                        </div>
-                    )
-                })}
+                <h3>Transaction Chat</h3>
+                <div>{createMessageArray()}</div>
                 <div className='message-functionality'>
-                    <input type="text"
+                    <input
+                        type="text"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
-                        placeholder='type message here...'/>
-                    <Button variant="primary" size="md" onClick={handleNewMessage}>Send Message</Button>
+                        placeholder='Type message here...'
+                    />
+                    <Button variant="primary" size="md" onClick={handleNewMessage}>
+                        Send Message
+                    </Button>
                 </div>
             </div>
-
         </>
-    )
+    );
 }
+
+//reference
+// import React from 'react';
+
+// import { GameEvent, GameNotifier } from './gameNotifier';
+// import './players.css';
+
+// export function Players(props) {
+//   const userName = props.userName;
+
+//   const [events, setEvent] = React.useState([]);
+
+//   React.useEffect(() => {
+//     GameNotifier.addHandler(handleGameEvent);
+
+//     return () => {
+//       GameNotifier.removeHandler(handleGameEvent);
+//     };
+//   });
+
+//   function handleGameEvent(event) {
+//     setEvent([...events, event]);
+//   }
+
+//   function createMessageArray() {
+//     const messageArray = [];
+//     for (const [i, event] of events.entries()) {
+//       let message = 'unknown';
+//       if (event.type === GameEvent.End) {
+//         message = `scored ${event.value.score}`;
+//       } else if (event.type === GameEvent.Start) {
+//         message = `started a new game`;
+//       } else if (event.type === GameEvent.System) {
+//         message = event.value.msg;
+//       }
+
+//       messageArray.push(
+//         <div key={i} className='event'>
+//           <span className={'player-event'}>{event.from.split('@')[0]}</span>
+//           {message}
+//         </div>
+//       );
+//     }
+//     return messageArray;
+//   }
+
+//   return (
+//     <div className='players'>
+//       Player
+//       <span className='player-name'>{userName}</span>
+//       <div id='player-messages'>{createMessageArray()}</div>
+//     </div>
+//   );
+// }

@@ -1,6 +1,9 @@
 import 'firebase/auth';
 import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { AuthState } from './authState';
 import './login.css';
+
 
 export function Login() {
         const [email, setEmail] = useState('');
@@ -18,11 +21,14 @@ export function Login() {
             });
         
             if (response.ok) {
-                localStorage.setItem('userName', email);
-                // Redirect or perform other actions
+                AuthState.Authenticated;
+                console.log('Login successful');
+                localStorage.setItem('userName', email.split('@')[0]);
+                console.log('username set', localStorage.getItem('userName'));
             } else {
                 const body = await response.json();
                 setError(`⚠ Error: ${body.msg}`);
+                AuthState.Unauthenticated;
             }
             } catch (error) {
             setError(error.message);
@@ -32,16 +38,23 @@ export function Login() {
     const handleLogin = async () => {
         try {
             await loginOrCreate(`/api/auth/login`);
-            console.log('Login successful');
         // If successful, you can redirect or perform other actions
         } catch (error) {
         setError(error.message);
         }
     };
 
+    const handleCreate = async () => {
+        try {
+            await loginOrCreate(`/api/auth/create`);
+        // If successful, you can redirect or perform other actions
+        } catch (error) {
+        setError(error.message);
+        }
+    }
+
 return (
     <>
-
         <div className='title-container'>
             <p className='title-top'>Budgeting, made</p>
             <h1 className='title-bottom'>Simple.</h1>
@@ -74,17 +87,16 @@ return (
                 onChange={(e) => setPassword(e.target.value)}
             />
             </div>
-            <button
-            type="button"
-            className="btn"
-            onClick={handleLogin}
-            >
+            <Button variant='primary' onClick={() => handleLogin()}>
             Login
-            </button>
+            </Button>
+            <Button variant='primary' onClick={() => handleCreate()}>
+            Create
+            </Button>
             {error && <p className="text-danger mt-3">{error}</p>}
         </form>
         </div>
         </div>
     </>
-);
+    );
 }

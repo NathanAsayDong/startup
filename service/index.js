@@ -1,12 +1,14 @@
 const express = require('express');
-const http = require('http');
 const app = express();
 const DB = require('./mongoDBService.js');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const authCookieName = 'token';
 const uuid = require('uuid');
-const { WebSocketServer } = require('ws');
+const http = require('http');
+const WebSocketServer = require('ws').Server;
+
+
 
 
 
@@ -171,11 +173,12 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-// websocket implementation
+// WS Implementation
 
 const wss = new WebSocketServer({ noServer: true });
 
 httpService.on('upgrade', (request, socket, head) => {
+  console.log('upgrade request');
   wss.handleUpgrade(request, socket, head, function done(ws) {
     wss.emit('connection', ws, request);
   });
@@ -184,15 +187,17 @@ httpService.on('upgrade', (request, socket, head) => {
 connections = [];
 
 wss.on('connection', (ws) => {
+  console.log('a user connected');
   const connection = { id: uuid.v4(), alive: true, ws: ws };
   connections.push(connection);
 
   // Forward messages to everyone except the sender
   ws.on('message', function message(data) {
-    messageObj = JSON.parse(data); // get the data formatted as a JSON object
-    messageObj = JSON.stringify(messageObj); // reformate as a string
+    console.log('received: ', data);
+    messageObj = JSON.parse(data);
+    console.log('received: ', messageObj);
     connections.forEach((c) => {
-    c.ws.send(messageObj);
+    c.ws.send(JSON.stringify(messageObj));
     });
   });
 
@@ -204,12 +209,16 @@ wss.on('connection', (ws) => {
         connections.splice(i, 1);
         return true;
       }
+      return false;
     });
   });
-});
 
-// Keep active connections alive
-setInterval(() => {
+  ws.on('pong', () => {
+    connection.alive = true;
+  });
+
+  // Keep active connections alive
+  setInterval(() => {
   connections.forEach((c) => {
     // Kill any connection that didn't respond to the ping last time
     if (!c.alive) {
@@ -220,17 +229,7 @@ setInterval(() => {
     }
   });
 }, 10000);
+});
 
 
 
-//// previous code
-
-// const wss = new WebSocketServer({ port: 9900 });
-// wss.on('connection', (ws) => {
-//   ws.on('message', (data) => {
-//     messageObj = JSON.parse(data); // get the data formatted as a JSON object
-//     messageObj = JSON.stringify(messageObj); // reformate as a string
-//     ws.send(messageObj);
-//   });
-//   // ws.send('Hello webSocket');
-// });

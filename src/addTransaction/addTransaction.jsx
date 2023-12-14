@@ -4,7 +4,6 @@ import { DropDownSelector } from '../home/dropDown/dropDownSelector';
 import './addTransaction.css';
 import { TransactionChat } from './transactionChat/transactionChat';
 
-
 export function AddTransaction() {
     
     const [selectedCategory, setSelectedCategory] = React.useState('All');
