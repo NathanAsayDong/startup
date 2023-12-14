@@ -15,7 +15,8 @@ export function AddTransaction() {
     };
 
     const handleAddTransaction = async () => {
-        const transaction = { category: selectedCategory, amount: amount, description: description };
+        let _timestamp = new Date();
+        const transaction = { category: selectedCategory, amount: amount, description: description, timestamp: _timestamp};
         
         try {
             const response = await fetch('/api/addTransactions', {

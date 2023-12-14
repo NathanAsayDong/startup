@@ -3,6 +3,7 @@
 }
 
 .title-container {
+    margin-top: 70px;
     padding-top: 20px;
     display: flex;
     align-items: center;

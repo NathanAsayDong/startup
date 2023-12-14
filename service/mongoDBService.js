@@ -2,6 +2,7 @@ const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
+const { start } = require('repl');
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 const db = client.db('startup');
@@ -71,10 +72,21 @@ async function addTransaction(Transaction) {
   return result;
 }
 
+// apiRouter.get('/transactions', async (req, res) => {
+//   console.log("Transactions Get Request")
+//   transactions = await DB.getTransactions(startDate, endDate, category);
+//   res.send(transactions);
+// })
+
+async function getTransactions(startDate='all', endDate='all', category='all') {
+  const result = await transactionCollection.find({}, { projection: { _id: 0 } }).toArray();
+  return result;
+}
+
 // function getTasks() {
 //   const query = { score: { $gt: 0, $lt: 900 } };
 //   const cursor = scoreCollection.find(query, options);
 //   return cursor.toArray();
 // }
 
-module.exports = { addClass, addTask , getClasses, getTasks, getUser, getUserByToken, createUser, getUserName, addTransaction };
+module.exports = { getUser, getUserByToken, createUser, getUserName, addTransaction, getTransactions };

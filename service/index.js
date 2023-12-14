@@ -86,6 +86,12 @@ apiRouter.post('/addTransactions', (req, res) => {
   res.send(req.body)
 })
 
+apiRouter.get('/getAllTransactions', async (req, res) => {
+  console.log("Transactions Get Request")
+  transactions = await DB.getTransactions();
+  res.send(transactions);
+})
+
 
 
 
