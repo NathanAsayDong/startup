@@ -35,7 +35,7 @@ const httpService = app.listen(port, () => {
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
-  res.sendFile('index.html', { root: 'public' });
+  res.sendFile('index.html', { root: './' });
 });
 
 
@@ -76,12 +76,13 @@ apiRouter.get('/classes', async (req, res) => {
   res.send(classes);
 });
 
-apiRouter.post('/newTransaction', (req, res) => {
+apiRouter.post('/addTransactions', (req, res) => {
   console.log("New Transaction Request")
-  console.log(req.body)
+  console.log("this is body", req.body)
   DB.addTransaction(req.body);
+  console.log(res.body)
   res.send(req.body)
-});
+})
 
 
 

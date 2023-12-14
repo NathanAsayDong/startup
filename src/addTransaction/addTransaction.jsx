@@ -17,15 +17,16 @@ export function AddTransaction() {
 
     const handleAddTransaction = async () => {
         const transaction = { category: selectedCategory, amount: amount, description: description };
-
+        
         try {
-            const response = await fetch('/api/transactions', {
+            const response = await fetch('/api/addTransactions', {
                 method: 'post',
                 body: JSON.stringify(transaction),
                 headers: {
                 'Content-type': 'application/json; charset=UTF-8',
                 },
             });
+            console.log("api success");
         } catch (error) {
             setError(error.message);
         }

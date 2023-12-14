@@ -12,3 +12,10 @@
 .mb-4 {
     margin-bottom: 1.5rem !important;
 }
+
+.btn {
+    background-color: #ADD2DB;
+    border-color: black;
+    color: black;
+
+}

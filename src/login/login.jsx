@@ -41,9 +41,9 @@ export function Login() {
 
 return (
     <>
-        
+
         <div className='title-container'>
-            <p className='title-top'>Budgeting made,</p>
+            <p className='title-top'>Budgeting, made</p>
             <h1 className='title-bottom'>Simple.</h1>
         </div>
         <div className="row justify-content-center">
@@ -76,7 +76,7 @@ return (
             </div>
             <button
             type="button"
-            className="btn btn-primary"
+            className="btn"
             onClick={handleLogin}
             >
             Login
