@@ -142,8 +142,7 @@ export function Home() {
                 <Bar dataKey="amount" fill="#82ca9d" />
             </BarChart>
 
-            
-
+            <p>Link to my GitHub repo: <a href="https://github.com/NathanAsayDong/startup" target="_blank" rel="noopener noreferrer">https://github.com/NathanAsayDong/startup</a></p>
 
         </div>
         </>

@@ -22,11 +22,10 @@ export function Login({ loginService, onLoginChange }) {
             });
         
             if (response.ok) {
-                AuthState.Authenticated;
                 console.log('Login successful');
                 localStorage.setItem('userName', email.split('@')[0]);
                 console.log('username set', localStorage.getItem('userName'));
-                window.location.href = '/home';
+                onLoginChange(AuthState.Authenticated);
             } else {
                 const body = await response.json();
                 setError(`⚠ Error: ${body.msg}`);

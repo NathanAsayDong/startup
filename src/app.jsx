@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { AddTransaction } from './addTransaction/addTransaction';
 import './app.css';
@@ -8,12 +8,19 @@ import { AuthState } from './login/authState';
 import { Login } from './login/login';
 
 export default function App() {
-    let currentAuthState = AuthState.Unknown;
+    const [currentAuthState, setAuthState] = React.useState(AuthState.Unknown);
     let userName = localStorage.getItem('userName') || '';
 
+
+    useEffect(() => {
+        console.log('current auth state', currentAuthState);
+        checkAuthState();
+    });
+
     const checkAuthState = () => {
+        console.log('check auth state');
         if (userName) {
-            currentAuthState = AuthState.Authenticated;
+            setAuthState(AuthState.Authenticated);
         }
     }
 
@@ -30,10 +37,8 @@ export default function App() {
     const changeAuthentication = (status) => {
         console.log('change auth status')
         setUserName(localStorage.getItem('userName'));
-        currentAuthState = AuthState.Authenticated;
+        setAuthState(status)
     }
-
-    checkAuthState();
 
     return (
     <BrowserRouter>
@@ -51,6 +56,7 @@ export default function App() {
 
             <Routes>
                 <Route path='/home' element={<Home />} exact />
+                <Route path='/' element={<Home />} exact />
                 <Route path='/' element={<Login />} exact />
                 <Route path='/addTransaction' element={<AddTransaction />} exact />
             </Routes>
