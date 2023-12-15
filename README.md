@@ -105,3 +105,20 @@ Websocket Checklist:
         -announcments.js now displays message from websocket
 - [x] Multiple Git commits with meaningful comments.
         -done
+
+React Checklist:
+- [x] Build React application
+        -done
+        -created react app using create-react-app
+        -React application bundled using WebPack and Babel
+- [x] Multiple componenents
+       -login page, home page, and transaction page
+- [x] React application converted to use React Router
+        -done
+        -react router is now used to navigate between pages
+        -see home page and app.jsx
+- [x] React application converted to use React Hooks
+        -see home.jsx and transactions.jsx
+        -done
+- [x] Multiple Git commits with meaningful comments.
+        -done
