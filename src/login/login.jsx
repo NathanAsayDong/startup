@@ -96,11 +96,8 @@ return (
                 <Button variant='primary' onClick={() => handleLogin()}>
                 Login
                 </Button>
-                <Button variant='primary' onClick={() => handleCreate()}>
+                <Button variant='primary' className="button2" onClick={() => handleCreate()}>
                 Create
-                </Button>
-                <Button variant='secondary' onClick={() => handleNateTest()}>
-                    Nate Test
                 </Button>
                 {error && <p className="text-danger mt-3">{error}</p>}
             </form>

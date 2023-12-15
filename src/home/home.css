@@ -30,3 +30,9 @@
     border: 2px solid #2980b9; /* Set your desired border color */
     box-sizing: border-box;
 }
+
+.graph-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px;
+}

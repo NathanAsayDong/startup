@@ -78,7 +78,7 @@ async function addTransaction(Transaction) {
 //   res.send(transactions);
 // })
 
-async function getTransactions(startDate='all', endDate='all', category='all') {
+async function getTransactions() {
   const result = await transactionCollection.find({}, { projection: { _id: 0 } }).toArray();
   return result;
 }

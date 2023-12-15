@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { Button } from 'react-bootstrap';
-import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts';
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts';
 import { DateSelector } from './dateSelector/dateSelector';
 import { DropDownSelector } from './dropDown/dropDownSelector';
 import './home.css';
@@ -33,9 +33,12 @@ export function Home() {
         setSelectedCategory(event.target.value);
     };
 
+        
+
     const handleGenerateReport = async () => {
         try {
-            const response = await fetch('/api/getAllTransactions', {
+            const apiUrl = '/api/getTransactions';
+            const response = await fetch(apiUrl, {
                 method: 'GET',
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',
@@ -46,7 +49,25 @@ export function Home() {
                 throw new Error(`Request failed with status ${response.status}: ${response.statusText}`);
             }
         
-            const body = await response.json();
+            let body = await response.json();
+            //filter data based on parameters
+            console.log('body', body);
+            //drop all values that are not in the selected category
+
+            console.log('filter parameters', selectedCategory, startDate, endDate)
+            if (selectedCategory !== 'All') {
+                console.log('selected category', selectedCategory);
+                body = body.filter(item => item.category === selectedCategory);
+            }
+            //drop all values that are not in the selected date range
+            const startDate2 = new Date(startDate.setHours(0, 0, 0, 0));
+            const endDate2 = new Date(endDate.setHours(23, 59, 59, 999));
+            console.log('start date', startDate2);
+            body = body.filter(item => {
+                const timestamp = new Date(item.timestamp);
+                return timestamp >= startDate2 && timestamp <= endDate2;
+            });
+                console.log('filtered body', body);
             await setData(body);
             await setCategoryTotals(getCategoryTotals(body));
 
@@ -85,7 +106,7 @@ export function Home() {
                 <p>Start Date</p>
                 </div>
                 <div className='date-selector'>
-                <DateSelector selectedDate={startDate} onDateChange={handleEndDateChange} />
+                <DateSelector selectedDate={endDate} onDateChange={handleEndDateChange} />
                     <p>End Date</p>
                 </div>
                 <DropDownSelector
@@ -94,19 +115,32 @@ export function Home() {
             </div>
             <Button variant="primary" size="md" onClick={handleGenerateReport}>GENERATE REPORT</Button>
 
-            <div className="rectangle"> <p>report</p> </div>
+            <h1 className="graph-title">Time Graph</h1>
+            <AreaChart width={730} height={250} data={data}
+                margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                <defs>
+                    <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
+                    <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+                    </linearGradient>
+                </defs>
+                <XAxis dataKey="timestamp" />
+                <YAxis />
+                <CartesianGrid strokeDasharray="3 3" />
+                <Tooltip />
+                <Area type="monotone" dataKey="amount" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
+            </AreaChart>
 
-            <div className="graph">
-                <BarChart width={730} height={250} data={categoryTotals}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="category" fill="#8884d8" />
-                    <Bar dataKey="amount" fill="#82ca9d" />
-                </BarChart>
-            </div>
+            <h1 className="graph-title">Categories</h1>
+            <BarChart width={730} height={250} data={categoryTotals}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="category" fill="#8884d8" />
+                <Bar dataKey="amount" fill="#82ca9d" />
+            </BarChart>
 
             
 

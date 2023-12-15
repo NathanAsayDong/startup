@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const authCookieName = 'token';
 const uuid = require('uuid');
 const http = require('http');
+const { start } = require('repl');
 const WebSocketServer = require('ws').Server;
 
 
@@ -86,7 +87,7 @@ apiRouter.post('/addTransactions', (req, res) => {
   res.send(req.body)
 })
 
-apiRouter.get('/getAllTransactions', async (req, res) => {
+apiRouter.get('/getTransactions', async (req, res) => {
   console.log("Transactions Get Request")
   transactions = await DB.getTransactions();
   res.send(transactions);
