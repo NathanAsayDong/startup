@@ -113,7 +113,7 @@ export function Home() {
                     selectedCategory={selectedCategory}
                     onCategoryChange={handleCategoryChange} />
             </div>
-            <Button variant="primary" size="md" onClick={handleGenerateReport}>GENERATE REPORT</Button>
+            <Button variant="primary" size="md" className='report-button' onClick={handleGenerateReport}>GENERATE REPORT</Button>
 
             <h1 className="graph-title">Time Graph</h1>
             <AreaChart width={730} height={250} data={data}

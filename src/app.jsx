@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect } from 'react';
+import { Button } from 'react-bootstrap';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { AddTransaction } from './addTransaction/addTransaction';
 import './app.css';
@@ -48,7 +49,8 @@ export default function App() {
             <nav className="nav-header">
                 <div className="header-content">
                     <h2 className='title'>Simple.</h2>
-                    <NavLink className='nav-link' to='/' onClick={() => handleLogOut()}>Log out</NavLink>
+                    {/* <NavLink className='nav-link' to='/' onClick={() => handleLogOut()}>Log out</NavLink> */}
+                    <Button size="md" className='nav-button' onClick={() => handleLogOut()}>Log out</Button>
                     <NavLink className='nav-link' to='addTransaction'>Add Transaction</NavLink>
                     <NavLink className='nav-link' to='/home'>Home</NavLink>
                 </div>

@@ -14,7 +14,7 @@
     margin-bottom: 1.5rem !important;
 }
 
-.btn {
+.login-button {
     background-color: #ADD2DB;
     border-color: black;
     color: black;
@@ -22,4 +22,7 @@
 }
 .button2 {
     margin-left: 10px;
+    background-color: #ADD2DB;
+    border-color: black;
+    color: black;
 }

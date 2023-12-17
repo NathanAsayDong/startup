@@ -29,4 +29,16 @@ p, h1, h2, h3, h4, h5, h6 {
     margin-right: 10px;
 }
 
+.nav-button {
+    background-color: #fff;
+    border-color: #fff;
+    color: black;
+}
+
+.nav-button:hover {
+    background-color: #fff;
+    border-color: #fff;
+    color: black;
+}
+
 

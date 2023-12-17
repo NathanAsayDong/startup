@@ -102,8 +102,48 @@ Other:
 - JSON : javascript object notation
 - adding js to file : use inline "<script> lines of code </script" or external "<script src = blank></script>"
 
+Final Notes:
+- What ports are used for HTTP, HTTPS, SSH? --> 80, 443, 22
+- What is the difference between HTTP and HTTPS? --> HTTPS is HTTP with encryption
+- What is the difference between a domain name and an IP address? --> domain name is human readable, ip address is computer readable
+- What is the difference between a DNS record and a DNS name server? --> DNS record maps to a domain and ipv4 address, DNS name server is a server that stores DNS records
+- What does the HTTP header content-type allows you to do? --> specify the type of data being sent
+- What do the following attributes of a cookie do?
+    - Domain --> specifies which hosts are allowed to receive the cookie
+    - Path --> specifies a URL path that must exist in the requested URL in order to send the cookie header
+    - SameSite --> specifies if the cookie is sent with cross-site requests
+    - HTTPOnly --> specifies if the cookie is accessible to client-side scripts
+- Assuming the following Express middleware, what would be the console.log output for an HTTP GET request with a URL path of /foo/bar? --> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+- Express Service Code --> app.get('/api/notes', (req, res) => { res.json(notes); });
+- Given the following MongoDB query { cost: { $gt: 10 }, name: /fran.*/} select all of the matching documents. --> { cost: { $gt: 10 }, name: /fran.*/ }
+- How should you store user passwords in a database --> hashed
+- What is the WebSocket protocol used for? --> full-duplex communication channels over a single TCP connection
+- What is the difference between a WebSocket and a REST API? --> REST API is a one way communication, WebSocket is a two way communication
+- What is JSX and how are the curly braces rendered? --> JSX is a syntax extension to javascript, curly braces are rendered as javascript
 
 
+// React
+- React is a javascript library for building user interfaces
+What are React Hooks used for?
+- Hooks are functions that let you "hook into" React state and lifecycle features from function components
+- Hooks don't work inside classes
+- Hooks let you always use functions instead of having to constantly switch between functions, classes, higher-order components, and render props
+- Hooks let you reuse stateful logic without changing your component hierarchy
+What role does npm play in web development?
+- npm is a package manager for the JavaScript programming language
+- npm is the default package manager for the JavaScript runtime environment Node.js
+What does package.json do in a npm project?
+- package.json is a file that gives the necessary information to npm which allows it to identify the project as well as handle the project's dependencies
+What does the fetch function do?
+- fetch() allows you to make network requests similar to XMLHttpRequest (XHR)
+- The main difference is that the Fetch API uses Promises, which enables a simpler and cleaner API, avoiding callback hell and having to remember the complex API of XMLHttpRequest
+What does node.js do?
+- Node.js is an open-source, cross-platform, back-end JavaScript runtime environment that runs on the V8 engine and executes JavaScript code outside a web browser
+What does Vite do?
+- Vite is a build tool that aims to provide a faster and leaner development experience for modern web projects
+- It consists of two major parts:
+    - A dev server that serves your source files over native ES modules, with rich built-in features and astonishingly fast Hot Module Replacement (HMR)
+    - A build command that bundles your code with Rollup, pre-configured to output highly optimized static assets for production
 
 
 

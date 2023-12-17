@@ -36,3 +36,9 @@
     font-weight: bold;
     margin: 10px;
 }
+
+.report-button{
+    background-color: #ADD2DB;
+    border-color: black;
+    color: black;
+}

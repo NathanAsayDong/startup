@@ -12,7 +12,6 @@ const WebSocketServer = require('ws').Server;
 
 
 
-
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -21,6 +20,7 @@ app.use(express.json());
 
 // Serve up the front-end static content hosting
 app.use(express.static('public'));
+
 
 // Use the cookie parser middleware for tracking authentication tokens
 app.use(cookieParser());
